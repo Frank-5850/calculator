@@ -3,6 +3,15 @@ import { useState } from "react";
 
 function App() {
   const [displayNumber, setDisplayNumber] = useState(0);
+  const [firstNumber, setFirstNumber] = useState(0);
+
+  const onNumberClick = (e) => {
+    if (displayNumber === 0) {
+      setDisplayNumber(e.target.innerHTML);
+    } else {
+      setDisplayNumber(`${displayNumber}${e.target.innerHTML}`);
+    }
+  };
 
   return (
     <div className="App">
@@ -17,67 +26,37 @@ function App() {
           <div className="button">+/-</div>
           <div className="button">%</div>
           <div className="button">÷</div>
-          <div
-            className="button"
-            onClick={(e) => setDisplayNumber(`${displayNumber}7`)}
-          >
+          <div className="button" onClick={(e) => onNumberClick(e)}>
             7
           </div>
-          <div
-            className="button"
-            onClick={(e) => setDisplayNumber(`${displayNumber}8`)}
-          >
+          <div className="button" onClick={(e) => onNumberClick(e)}>
             8
           </div>
-          <div
-            className="button"
-            onClick={(e) => setDisplayNumber(`${displayNumber}9`)}
-          >
+          <div className="button" onClick={(e) => onNumberClick(e)}>
             9
           </div>
           <div className="button">x</div>
-          <div
-            className="button"
-            onClick={(e) => setDisplayNumber(`${displayNumber}4`)}
-          >
+          <div className="button" onClick={(e) => onNumberClick(e)}>
             4
           </div>
-          <div
-            className="button"
-            onClick={(e) => setDisplayNumber(`${displayNumber}5`)}
-          >
+          <div className="button" onClick={(e) => onNumberClick(e)}>
             5
           </div>
-          <div
-            className="button"
-            onClick={(e) => setDisplayNumber(`${displayNumber}6`)}
-          >
+          <div className="button" onClick={(e) => onNumberClick(e)}>
             6
           </div>
           <div className="button">-</div>
-          <div
-            className="button"
-            onClick={(e) => setDisplayNumber(`${displayNumber}1`)}
-          >
+          <div className="button" onClick={(e) => onNumberClick(e)}>
             1
           </div>
-          <div
-            className="button"
-            onClick={(e) => setDisplayNumber(`${displayNumber}2`)}
-          >
+          <div className="button" onClick={(e) => onNumberClick(e)}>
             2
           </div>
-          <div
-            className="button"
-            onClick={(e) => setDisplayNumber(`${displayNumber}3`)}
-          >
+          <div className="button" onClick={(e) => onNumberClick(e)}>
             3
           </div>
           <div className="button">+</div>
-          <div
-            className="button zero"
-            onClick={(e) => setDisplayNumber(`${displayNumber}0`)}
-          >
+          <div className="button zero" onClick={(e) => onNumberClick(e)}>
             0
           </div>
           <div className="button">.</div>
