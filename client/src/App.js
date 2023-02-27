@@ -22,7 +22,6 @@ function App() {
     } else {
       int = displayNumber;
     }
-    console.log(int);
     switch (e.target.innerHTML) {
       case "x":
         setFirstNumber(int);
@@ -50,9 +49,7 @@ function App() {
       case ".":
         if (!displayNumber.includes(".")) {
           setDisplayNumber(`${displayNumber}.`);
-          console.log("yes");
         }
-        console.log("no");
         break;
       default:
         console.log("error");

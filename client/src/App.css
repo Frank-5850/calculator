@@ -21,15 +21,17 @@
 
 .displayContainer {
   margin:15px;
-  background-color: black ;
+  background:linear-gradient(225deg, #cacaca, #f0f0f0);
   height: 150px;
   width: 90%;
-  border-radius: 5px;
+  border-radius: 10px;
+  box-shadow: inset  -5px 5px 5px darkgrey,
+              inset 5px 5px 5px darkgrey;;
 }
 
 .currentOperation{
   margin:10px;
-  color:lightgray;
+  color:darkgrey;
   height:35%;
   font-size: 24px;
 }
@@ -39,7 +41,7 @@
   justify-content: flex-end;
   align-items: flex-end;
   margin:10px;
-  color:white;
+  color:darkgrey;
   font-size: 48px;
   height:45%;
 }
