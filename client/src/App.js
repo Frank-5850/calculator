@@ -18,10 +18,11 @@ function App() {
   const onOperationClick = (e) => {
     let int;
     if (typeof displayNumber === "string") {
-      int = parseInt(displayNumber);
+      int = parseFloat(displayNumber);
     } else {
       int = displayNumber;
     }
+    console.log(int);
     switch (e.target.innerHTML) {
       case "x":
         setFirstNumber(int);
@@ -46,6 +47,13 @@ function App() {
       case "%":
         setDisplayNumber(int / 100);
         break;
+      case ".":
+        if (!displayNumber.includes(".")) {
+          setDisplayNumber(`${displayNumber}.`);
+          console.log("yes");
+        }
+        console.log("no");
+        break;
       default:
         console.log("error");
         break;
@@ -56,7 +64,7 @@ function App() {
     let result;
     let int;
     if (typeof displayNumber === "string") {
-      int = parseInt(displayNumber);
+      int = parseFloat(displayNumber);
     } else {
       int = displayNumber;
     }
@@ -169,7 +177,9 @@ function App() {
           <div className="button zero" onClick={(e) => onNumberClick(e)}>
             0
           </div>
-          <div className="button">.</div>
+          <div className="button" onClick={(e) => onOperationClick(e)}>
+            .
+          </div>
           <div className="button" onClick={() => performCalculation()}>
             =
           </div>
