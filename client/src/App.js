@@ -4,8 +4,8 @@ import { useState } from "react";
 function App() {
   const [displayNumber, setDisplayNumber] = useState(0);
   const [firstNumber, setFirstNumber] = useState(0);
-  const [secondNumber, setSecondNumber] = useState(0);
   const [operation, setOperation] = useState(null);
+  const [currentOperationString, setCurrentOperationString] = useState(null);
 
   const onNumberClick = (e) => {
     if (displayNumber === 0) {
@@ -16,28 +16,36 @@ function App() {
   };
 
   const onOperationClick = (e) => {
+    let int;
+    if (typeof displayNumber === "string") {
+      int = parseInt(displayNumber);
+    } else {
+      int = displayNumber;
+    }
     switch (e.target.innerHTML) {
       case "x":
-        setFirstNumber(parseInt(displayNumber));
+        setFirstNumber(int);
         setDisplayNumber(0);
         setOperation("x");
         break;
       case "÷":
-        setFirstNumber(parseInt(displayNumber));
+        setFirstNumber(int);
         setDisplayNumber(0);
         setOperation("÷");
         break;
       case "-":
-        setFirstNumber(parseInt(displayNumber));
+        setFirstNumber(int);
         setDisplayNumber(0);
         setOperation("-");
         break;
       case "+":
-        setFirstNumber(parseInt(displayNumber));
+        setFirstNumber(int);
         setDisplayNumber(0);
         setOperation("+");
         break;
-
+      case "%":
+        setDisplayNumber(int / 100);
+        break;
       default:
         console.log("error");
         break;
@@ -46,22 +54,40 @@ function App() {
 
   const performCalculation = () => {
     let result;
+    let int;
+    if (typeof displayNumber === "string") {
+      int = parseInt(displayNumber);
+    } else {
+      int = displayNumber;
+    }
     switch (operation) {
       case "x":
-        result = firstNumber * parseInt(displayNumber);
+        result = firstNumber * int;
         setDisplayNumber(result);
+        setCurrentOperationString(
+          `${firstNumber} ${operation} ${displayNumber} =`
+        );
         break;
       case "÷":
-        result = firstNumber / parseInt(displayNumber);
+        result = firstNumber / int;
         setDisplayNumber(result);
+        setCurrentOperationString(
+          `${firstNumber} ${operation} ${displayNumber} =`
+        );
         break;
       case "-":
-        result = firstNumber - parseInt(displayNumber);
+        result = firstNumber - int;
         setDisplayNumber(result);
+        setCurrentOperationString(
+          `${firstNumber} ${operation} ${displayNumber} =`
+        );
         break;
       case "+":
-        result = firstNumber + parseInt(displayNumber);
+        result = firstNumber + int;
         setDisplayNumber(result);
+        setCurrentOperationString(
+          `${firstNumber} ${operation} ${displayNumber} =`
+        );
         break;
       default:
         console.log("error");
@@ -72,20 +98,32 @@ function App() {
   const resetCalculator = () => {
     setDisplayNumber(0);
     setFirstNumber(0);
-    setSecondNumber(0);
+    setOperation(null);
+    setCurrentOperationString(null);
+  };
+
+  const setOpposite = () => {
+    if (displayNumber > 0) {
+      setDisplayNumber(`-${displayNumber}`);
+    } else {
+      setDisplayNumber(displayNumber * -1);
+    }
   };
 
   return (
     <div className="App">
       <div className="calculatorContainer">
         <div className="displayContainer">
+          <div className="currentOperation">{currentOperationString}</div>
           <div className="displayNumber">{displayNumber}</div>
         </div>
         <div className="buttonGrid">
           <div className="button" onClick={() => resetCalculator()}>
             AC
           </div>
-          <div className="button">+/-</div>
+          <div className="button" onClick={() => setOpposite()}>
+            +/-
+          </div>
           <div className="button" onClick={(e) => onOperationClick(e)}>
             %
           </div>
